@@ -1,17 +1,6 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-/*-------------------------
-    swap
-  ------------------------ */
-void swap(uint8_t *a, uint8_t *b)
-{
-  int temp ;
-  temp = *a ;
-  *a = *b ;
-  *b = temp ;
-}
-
 
 /*-------------------------
     makeStr
