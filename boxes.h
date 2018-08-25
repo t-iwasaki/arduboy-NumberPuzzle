@@ -164,42 +164,41 @@ void moveBox()
   ------------------------ */
 void drawBox()
 {
-  for (int y = 1; y < 8; y++) {
-      arduboy.drawSlowXYBitmap(0, y*8, bOuterWall, 8, 8, 1);
-      arduboy.drawSlowXYBitmap(15*8, y*8, bOuterWall, 8, 8, 1);
+  for (int y = 1; y < 7; y++) {
+      arduboy.drawSlowXYBitmap(0, y * 8 + pYAdjust, bOuterWall, 8, 8, 1);
+      arduboy.drawSlowXYBitmap(15 * 8, y * 8 + pYAdjust, bOuterWall, 8, 8, 1);
   }
-/*
-  for (int x = 1; x < 15; x++) {
-      arduboy.drawSlowXYBitmap(x*8, 8, bOuterWall, 8, 8, 1);
-  }
-*/
+
 
   for (int i = 0; i < box.concurrent_box_max; i++) {
     if (boxes[i].active) {
+      int x = boxes[i].x;
+      int y = boxes[i].y - pYAdjust;
+      
       switch (boxes[i].kind) {
         case 1:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bOne, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bOne, 8, 8, 1);
           break;
         case 2:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bTwo, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bTwo, 8, 8, 1);
           break;
         case 3:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bThree, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bThree, 8, 8, 1);
           break;
         case 4:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bFour, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bFour, 8, 8, 1);
           break;
         case 7:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bHatena, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bHatena, 8, 8, 1);
           break;
         case 8:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bHoll, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bHoll, 8, 8, 1);
           break;
         case 9:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bWall, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bWall, 8, 8, 1);
           break;
         default:
-          arduboy.drawSlowXYBitmap(boxes[i].x, boxes[i].y, bBox, 8, 8, 1);
+          arduboy.drawSlowXYBitmap(x, y, bBox, 8, 8, 1);
           break;
       }
     }

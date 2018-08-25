@@ -73,8 +73,8 @@ void movePlayer() {
   if (pX > pWidth - pCharSize -8) {
     pX = pWidth - pCharSize -8;
   }
-  if (pY < 8) {
-    pY = 8;
+  if (pY < 16) {
+    pY = 16;
   }
   if (pY > pHeight - pCharSize) {
     pY = pHeight - pCharSize;
@@ -88,7 +88,7 @@ void movePlayer() {
   ------------------------ */
 void drawPlayer()
 {
-  arduboy.drawSlowXYBitmap(pX , pY, bMan, 8, 8, 1);
+  arduboy.drawSlowXYBitmap(pX , pY - pYAdjust, bMan, 8, 8, 1);
 }
 
 #endif
