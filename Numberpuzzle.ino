@@ -26,17 +26,15 @@
 void setup() {
   arduboy.begin();
 
-
 // for screen shot..
-//  Serial.begin(9600);
-
+// Serial.begin(9600);
 
   displayTitle();
 
   lTime = millis();
   lTimeNext = millis();
 
-  arduboy.setFrameRate(60);
+  arduboy.setFrameRate(40);
   arduboy.initRandomSeed();
 }
 
@@ -73,7 +71,6 @@ void loop() {
 
   arduboy.display();
 
-  // for screen shot..
-//  Serial.write(arduboy.getBuffer(), 128 * 64 / 8);
-
+// for screen shot..
+// Serial.write(arduboy.getBuffer(), 128 * 64 / 8);
 }

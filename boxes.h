@@ -18,8 +18,9 @@ void _checkwall(int i)
 void _makeMap(int stageno)
 {
   stageno--;
+
   //TODO:
-  Serial.println("MAP ----------------------");
+  //Serial.println("MAP ----------------------");
 
   int offsetY = 8;
   int i = 0;
@@ -69,7 +70,7 @@ void initBox(int concurrent_box_max)
   box.qty = 0;
   box.concurrent_box_max = (concurrent_box_max > CONCURRENT_BOX_MAX ) ? CONCURRENT_BOX_MAX : concurrent_box_max;
 
-  for (int i = 0; i < sizeof(boxes); i++) {
+  for (int i = 0; i < box.concurrent_box_max; i++) {
     boxes[i].active = false;
   }
 
@@ -163,6 +164,16 @@ void moveBox()
   ------------------------ */
 void drawBox()
 {
+  for (int y = 1; y < 8; y++) {
+      arduboy.drawSlowXYBitmap(0, y*8, bOuterWall, 8, 8, 1);
+      arduboy.drawSlowXYBitmap(15*8, y*8, bOuterWall, 8, 8, 1);
+  }
+/*
+  for (int x = 1; x < 15; x++) {
+      arduboy.drawSlowXYBitmap(x*8, 8, bOuterWall, 8, 8, 1);
+  }
+*/
+
   for (int i = 0; i < box.concurrent_box_max; i++) {
     if (boxes[i].active) {
       switch (boxes[i].kind) {

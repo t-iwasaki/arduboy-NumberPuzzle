@@ -14,5 +14,6 @@ extern const unsigned char bFour [];
 extern const unsigned char bHatena [];
 extern const unsigned char bHoll [];
 extern const unsigned char bWall [];
+extern const unsigned char bOuterWall [];
 
 #endif
