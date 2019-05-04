@@ -57,6 +57,10 @@ void displayTitle()
     arduboy.setTextSize(2);
     arduboy.print("Puzzle");
 
+    arduboy.setCursor(20, 42);
+    arduboy.setTextSize(1);
+    arduboy.print("ver 1.0.1");
+
     flash++;
     flash %= 50;
 
