@@ -26,7 +26,7 @@ void drawHeader()
   for (int i = 0; i < pLives; i++) {
     arduboy.drawBitmap(3 + (i * 10) , 1 , bHeart, 8, 8, 0);
   }
-  arduboy.setCursor(72, 1);
+  arduboy.setCursor(60, 1);
   arduboy.write(' ');
   arduboy.write('S');
   arduboy.write('T');
@@ -45,6 +45,8 @@ void displayTitle()
 {
   initStage();
   int flash = 0;
+  int stageMax = sizeof(pStageMap) / sizeof(pStageMap[0]);
+
   while (true) {
     delay( 30 );
     arduboy.clearDisplay();
@@ -61,13 +63,25 @@ void displayTitle()
     arduboy.setTextSize(1);
     arduboy.print("ver 1.0.1");
 
+    arduboy.setTextSize(1);
+    arduboy.setCursor(100, 42);
+    arduboy.print(pStage);
+
     flash++;
     flash %= 50;
 
     if (flash < 25) {
       arduboy.setCursor(30, 54);
       arduboy.setTextSize(1);
-      arduboy.print("Press A or B");
+      arduboy.print("Press A or B ");
+    }
+
+
+    if (pStage < stageMax && arduboy.pressed(UP_BUTTON)) {
+      pStage += 1;
+    }
+    if (pStage > 1 && arduboy.pressed(DOWN_BUTTON)) {
+      pStage -= 1;
     }
 
     arduboy.display();
@@ -90,26 +104,28 @@ void displayStageClear()
   pIsStageClear = false;
   pWait = true;
 
-  
-  int row = sizeof(pStageMap) / sizeof(pStageMap[0]); 
-  if (pStage >= row){
-      strcpy(pText, "All Stage Clear!!!!");
-      pStage = 1;
+
+  int row = sizeof(pStageMap) / sizeof(pStageMap[0]);
+  if (pStage >= row) {
+    strcpy(pText, "All Stage Clear!!!!");
+    delay( 3000 );
+    pStage = 1;
+    pWait = false;
+    displayTitle();
   }
-  else{
+  else {
     strcpy(pText, "Stage Clear!!!!");
     initStage();
+
+    arduboy.clearDisplay();
+    arduboy.setCursor(20, 18);
+    arduboy.setTextSize(1);
+    arduboy.print(pText);
+    arduboy.display();
+
+    delay( 3000 );
+    pWait = false;
   }
-
-
-  arduboy.clearDisplay();
-  arduboy.setCursor(20, 18);
-  arduboy.setTextSize(1);
-  arduboy.print(pText);
-  arduboy.display();
-  
-  delay( 3000 );
-  pWait = false;
   return;
 }
 
@@ -134,11 +150,11 @@ void displayGameOver()
   arduboy.setTextSize(1);
   arduboy.print(pText);
   arduboy.display();
-  
+
   delay( 3000 );
   pWait = false;
   displayTitle();
-  
+
   return;
 }
 
