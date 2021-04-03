@@ -61,10 +61,11 @@ void displayTitle()
 
     arduboy.setCursor(20, 42);
     arduboy.setTextSize(1);
-    arduboy.print("ver 1.0.1");
+    arduboy.print("ver 1.1");
 
     arduboy.setTextSize(1);
-    arduboy.setCursor(100, 42);
+    arduboy.setCursor(70, 42);
+    arduboy.print("stage ");
     arduboy.print(pStage);
 
     flash++;
@@ -79,9 +80,11 @@ void displayTitle()
 
     if (pStage < stageMax && arduboy.pressed(UP_BUTTON)) {
       pStage += 1;
+      delay( 500 );
     }
     if (pStage > 1 && arduboy.pressed(DOWN_BUTTON)) {
       pStage -= 1;
+      delay( 500 );
     }
 
     arduboy.display();
@@ -104,27 +107,26 @@ void displayStageClear()
   pIsStageClear = false;
   pWait = true;
 
-
   int row = sizeof(pStageMap) / sizeof(pStageMap[0]);
   if (pStage >= row) {
     strcpy(pText, "All Stage Clear!!!!");
-    delay( 3000 );
-    pStage = 1;
-    pWait = false;
-    displayTitle();
   }
   else {
     strcpy(pText, "Stage Clear!!!!");
     initStage();
+  }
+  arduboy.clearDisplay();
+  arduboy.setCursor(20, 18);
+  arduboy.setTextSize(1);
+  arduboy.print(pText);
+  arduboy.display();
 
-    arduboy.clearDisplay();
-    arduboy.setCursor(20, 18);
-    arduboy.setTextSize(1);
-    arduboy.print(pText);
-    arduboy.display();
-
-    delay( 3000 );
-    pWait = false;
+  delay( 3000 );
+  pWait = false;
+  
+  if (pStage >= row) {
+    pStage = 1;
+    displayTitle();
   }
   return;
 }

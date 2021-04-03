@@ -6,10 +6,10 @@
   ------------------------ */
 void _checkwall(int i)
 {
-  if (boxes[i].x < 8) boxes[i].x = 8;
-  if (boxes[i].x > pWidth - pCharSize - 8) boxes[i].x = pWidth - pCharSize - 8;
+  if (boxes[i].x < 0) boxes[i].x = 0;
+  if (boxes[i].x > pWidth - pCharSize) boxes[i].x = pWidth - pCharSize;
   if (boxes[i].y < 16) boxes[i].y = 16;
-  if (boxes[i].y > pHeight - pCharSize - 8) boxes[i].y = pHeight - pCharSize;
+  if (boxes[i].y > pHeight - pCharSize) boxes[i].y = pHeight - pCharSize;
 }
 
 /*-------------------------
@@ -28,8 +28,8 @@ void _makeMap(int stageno)
   box.qty = 0;
 
   for (int y = 0; y < 6; y++) {
-    for (int x = 0; x < 13; x++) {
-      int kind = pgm_read_byte(&pStageMap[stageno][x + y * 13]);
+    for (int x = 0; x < 15; x++) {
+      int kind = pgm_read_byte(&pStageMap[stageno][x + y * 15]);
 
       if (kind > 0) {
 
@@ -164,12 +164,6 @@ void moveBox()
   ------------------------ */
 void drawBox()
 {
-  for (int y = 1; y < 7; y++) {
-      arduboy.drawSlowXYBitmap(0, y * 8 + pYAdjust, bOuterWall, 8, 8, 1);
-      arduboy.drawSlowXYBitmap(15 * 8, y * 8 + pYAdjust, bOuterWall, 8, 8, 1);
-  }
-
-
   for (int i = 0; i < box.concurrent_box_max; i++) {
     if (boxes[i].active) {
       int x = boxes[i].x;
