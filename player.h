@@ -33,9 +33,6 @@ void movePlayer() {
       pArrow = pLastPress = DOWN_BUTTON;
       pY += pSpeed;
     } else if (arduboy.pressed(LEFT_BUTTON)) {
-      if (pX == 0) {
-        return;
-      }
       pArrow = pLastPress = LEFT_BUTTON;
       pX -= pSpeed;
     } else if (arduboy.pressed(RIGHT_BUTTON)) {

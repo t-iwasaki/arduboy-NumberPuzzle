@@ -33,12 +33,10 @@ bool     pIsStageClear = false;
 bool     pIsGameOver = false;
 
 
+int  pX = 0;
+int  pY = 0;
 
-
-uint8_t  pX = 0;
-uint8_t  pY = 0;
 uint8_t  pYAdjust = 4;
-
 uint8_t  pCharSize = 8;
 
 uint8_t  pSpeed = 1;
