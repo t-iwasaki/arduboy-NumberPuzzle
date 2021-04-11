@@ -33,8 +33,8 @@ bool     pIsStageClear = false;
 bool     pIsGameOver = false;
 
 
-int  pX = 0;
-int  pY = 0;
+int8_t  pX = 0;
+int8_t  pY = 0;
 
 uint8_t  pYAdjust = 4;
 uint8_t  pCharSize = 8;
@@ -55,9 +55,9 @@ char     pText[32];
 
 
 // box
-uint8_t concurrent_box_max = 30;
+uint8_t concurrent_box_max = 50;
 
-const uint8_t CONCURRENT_BOX_MAX = 30;
+const uint8_t CONCURRENT_BOX_MAX = 50;
 
 struct Box
 {
@@ -69,8 +69,8 @@ struct Box
 
 struct Boxs
 {
-  float x = 64;
-  float y = 16;
+  int8_t x = 64;
+  int8_t y = 16;
   uint8_t boxSpeed = 0;
   bool active = false;
   uint8_t kind = 0;
