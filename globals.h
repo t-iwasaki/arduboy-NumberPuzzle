@@ -55,9 +55,9 @@ char     pText[32];
 
 
 // box
-uint8_t concurrent_box_max = 50;
+uint8_t concurrent_box_max = 90;
 
-const uint8_t CONCURRENT_BOX_MAX = 50;
+const uint8_t CONCURRENT_BOX_MAX = 90;
 
 struct Box
 {

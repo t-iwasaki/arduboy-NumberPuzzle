@@ -34,7 +34,7 @@ void _makeMap(int stageno)
       if (kind > 0) {
 
         // 数字ボックスだけをカウントする。
-        if (kind < 7) {
+        if (kind < 5) {
           box.qty++;
         }
 
@@ -87,7 +87,7 @@ void moveBox()
     if (boxes[i].active == true && boxes[i].arrow != 0) {
 
 
-      if (boxes[i].kind >= 7) {
+      if (boxes[i].kind >= 6) {
         boxes[i].arrow = 0;
       }
 
@@ -124,22 +124,20 @@ void moveBox()
             boxes[i].x = save_x;
             boxes[i].y = save_y;
 
-
-            if (boxes[j].kind == 7 ||
-                boxes[i].kind < 8 && boxes[i].kind == boxes[j].kind
+            // flush hatena or same number
+            if (boxes[j].kind == 6 ||
+                boxes[i].kind < 5 && boxes[i].kind == boxes[j].kind
                ) {
               boxes[i].active = false;
               boxes[j].active = false;
 
-              if (boxes[i].kind < 7) {
+              if (boxes[i].kind < 5) {
                 box.qty--;
               }
-              if (boxes[j].kind < 7) {
+              if (boxes[j].kind < 5) {
                 box.qty--;
               }
             }
-
-
             break;
           }
         }
@@ -182,7 +180,10 @@ void drawBox()
         case 4:
           arduboy.drawSlowXYBitmap(x, y, bFour, 8, 8, 1);
           break;
-        case 7:
+        case 5:
+          arduboy.drawSlowXYBitmap(x, y, bBox, 8, 8, 1);
+          break;
+        case 6:
           arduboy.drawSlowXYBitmap(x, y, bHatena, 8, 8, 1);
           break;
         case 8:
